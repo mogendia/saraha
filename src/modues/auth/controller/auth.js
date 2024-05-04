@@ -32,7 +32,7 @@ export const confirmEmail = async (req,res,next)=>{
     const {token} = req.params
     const decoded = verifyToken({token,signature:process.env.TOKEN_SIGNATURE})
     const user = await userModel.findByIdAndUpdate(decoded.id,{confirmEmail:true})
-    // return user ? res.json({message:'done'}):next(new Error('Not Registered Account',{cause:404}))
+    
     return user? res.redirect('https://signup.com/login/signin/') :
     res.send(`<a href='https://signup.com/login/signup/>u dont have account click here to signup</a>`)
 }
