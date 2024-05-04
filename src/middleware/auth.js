@@ -1,7 +1,6 @@
 import userModel from '../../DB/model/userModel.js';
 import {asyncHandler} from '../utils/errorHandling.js'
 import { verifyToken } from "../utils/jwt.js";
-// export let accessData;
 export const auth =asyncHandler(
     async (req,res,next)=>{
         const {authorization} = req.headers
@@ -23,7 +22,7 @@ export const auth =asyncHandler(
         if (!user) {
             return next(new Error('Not registered',{cause:401}));
         }
-        // accessData=user;
+        
         req.user=user
         return next()
     }
